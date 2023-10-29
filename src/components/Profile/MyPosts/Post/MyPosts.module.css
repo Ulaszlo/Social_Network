@@ -1,0 +1,38 @@
+
+.postBlock{
+    /*background-color: white;*/
+    /*border: 0.5mm ridge rgb(109 106 106 / 15%);*/
+    /*border-radius: 17px;*/
+    /*margin-top: 6%;*/
+    /*width: 50%;*/
+    position: relative;
+
+}
+.posts{
+    padding-top: 75px;
+
+}
+.postsTitle{
+
+}
+.inputPostStyle{
+border-radius: 10px;
+    width: 50%;
+
+}
+.r{
+    border-radius: 17px;
+    background-color: white;
+    height: fit-content;
+    width: 75%;
+    padding-left: 50px;
+    margin-top: 60px;
+    padding-top: 10%;
+    border: 1mm ridge rgb(109 106 106 / 15%);
+    width: 182%;
+}
+.addPostButton{
+    margin: -45px;
+    padding-left: 42px;
+    padding-top: 48px;
+}

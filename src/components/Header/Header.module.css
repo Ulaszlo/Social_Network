@@ -1,0 +1,27 @@
+.header {
+    width: 100%;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    margin-left: -7.7px;
+    border-bottom: 1mm ridge rgb(109 106 106 / 15%);
+
+}
+
+.headerLogo {
+    width: 30px;
+    border-radius: 35px;
+    margin-left: 25px;
+    margin-top: 2px;
+}
+
+.loginBlock {
+    float: right;
+    padding-right: 2%;
+
+}
+
+.loginBlock a {
+    color: red;
+
+}

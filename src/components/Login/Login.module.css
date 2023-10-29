@@ -1,0 +1,16 @@
+.loginPage{
+    text-align: center;
+    background-color: snow;
+
+}
+.loginForm{
+ display: inline-flex;
+    margin-left: 10%;
+}
+.TextField {
+    line-height: 2.4375em;
+width: 50%;
+}
+.TextField .label{
+    line-height: 2.4375em;
+}

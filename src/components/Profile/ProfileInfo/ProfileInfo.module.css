@@ -1,0 +1,55 @@
+.profileInfoContent{
+    width: 911px;
+    height: 190px;
+    margin-top: 15px;
+    background-color: white;
+    border-radius: 22px;
+    border: 0.5mm ridge rgb(109 106 106 / 15%);
+    position: relative;
+}
+.profileUserPhoto{
+    width: 150px;
+    height: 150px;
+border-radius: 150px;
+    padding: 23px;
+}
+/*.profileInfo{*/
+/*    margin-left: 35px;*/
+
+/*}*/
+.yyy{
+    /*margin-left: 298px;*/
+    /*margin-top: -145px;*/
+ /*padding-top: 5px;*/
+}
+.userName{
+    width: 38%;
+    position: absolute;
+    top: 40%;
+    left: 23%;
+    height: 51px;
+    font-size: 28px;
+    font-family: "Arial";
+}
+.contacts{
+    width: 17%;
+    top: 21%;
+    position: absolute;
+    left: 65%;
+}
+.profileInfoLinks{
+    color: #1e1f21;
+    text-decoration: none;
+    padding:2%;
+}
+.contactsTitle{
+    color: #6f7781;
+    position: absolute;
+    top: -20%;
+    left: 22%;
+}
+.contactsIcon{
+    width: 20px;
+    height: 20px;
+    padding-left: 5%;
+}

@@ -1,0 +1,41 @@
+.nav {
+
+
+    padding: 1%;
+    margin-right: 20px;
+    margin-top: 5%;
+    background-color: white;
+    border-radius: 16px;
+    margin-left: 250px;
+    border: 0.5mm ridge rgb(109 106 106 / 15%);
+    position: fixed;
+
+    /*grid-area: n;*/
+    /*!*padding: 20px;*!*/
+    /*margin-right: 20px;*/
+    /*margin-top: -15px;*/
+    /*background-color: white;*/
+    /*border-radius: 16px;*/
+    /*margin-left: 250px;*/
+    /*border: 0.5mm ridge rgb(109 106 106 / 15%);*/
+}
+
+.navItem {
+    margin-top: 10px;
+    padding: 35px;
+
+
+}
+
+.item a {
+    color: #584b4b;
+    text-decoration: none;
+    font-family: "Arial";
+    font-size: 17px;
+
+}
+.navDiv{
+    padding: 5%;
+}
+
+
