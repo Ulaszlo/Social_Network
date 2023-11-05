@@ -5,19 +5,29 @@ import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {MyPostsContainer} from "./MyPosts/Post/MyPostsContainer";
 import {Preloader} from "../common/Preloader";
 import {ProfileContainerType} from "./ProfileContainer";
-
-export const Profile = (props: ProfileContainerType) => {
+import {TypeProfileDataType} from "../../redux/Reducers/profile-reducer";
+type ProfilePropsType={
+    profile:TypeProfileDataType
+    getProfile:(userId:number)=>void
+    UserStatus:string
+    updateUserStatus: (NewStatus: string) => void
+    getUserStatus:(userId: number)=>void
+}
+export const Profile = (props: ProfilePropsType) => {
     if (!props.profile) {
         return (
             <Preloader/>
         )
     }
+    // @ts-ignore
     return (
+
         < >
-            <ProfileInfo profile={props.profile} UserStatus={props.UserStatus}
+            <ProfileInfo getUserStatus={props.getUserStatus} getProfile={props.getProfile} profile={props.profile} UserStatus={props.UserStatus}
                           updateUserStatus={props.updateUserStatus}/>
 
             <div className={s.content}>
+                {/*// @ts-ignore*/}
                 <MyPostsContainer className={s.profileInfoWrapper}  profile={props.profile}/>
             </div>
 

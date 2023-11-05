@@ -11,11 +11,11 @@ let AppInitialState:AppInitialStateType={
     initialized:false
 }
 //
-const SET_INITIALIZED = "SET-INITIALIZED"
+const SET_INITIALIZED = "app-reducer/SET-INITIALIZED"
 //
 export const appReducer=(state=AppInitialState,action:AllAppActionType)=>{
     switch (action.type) {
-        case "SET-INITIALIZED":
+        case SET_INITIALIZED :
             return {
                 ...state, initialized:true
             }
@@ -27,8 +27,9 @@ export const appReducer=(state=AppInitialState,action:AllAppActionType)=>{
 //
 type initializedSuccessType = ReturnType<typeof initializedSuccess >
 export const initializedSuccess =() =>({
-    type:"SET-INITIALIZED",
-})
+    type: SET_INITIALIZED,
+} as const
+)
 //thankAC
 export const initializedApp= () => (dispatch:any) => {
         let promise = dispatch(getAuthUserData())

@@ -26,7 +26,9 @@ class HeaderComponent extends React.Component<HeaderContainerType> {
 
     render = () => {
         return (
-            <Header {...this.props}/>
+            <Header setAuthUserData={function (): void {
+                throw new Error("Function not implemented.");
+            }} {...this.props}/>
         )
     }
 }

@@ -39,7 +39,7 @@ export type AllUsersActionsType= setIsFetchingType|setCurrentPageType |followTyp
 // usersReducer
 export const usersReducer = (state = initialState, action: any): UsersInitialStateType => {
     switch (action.type) {
-        case 'FOLLOW' :
+        case 'users-reducer/FOLLOW' :
             return {
                 ...state, users: state.users.map(u => {
                     if (u.id === action.userId) {
@@ -48,12 +48,12 @@ export const usersReducer = (state = initialState, action: any): UsersInitialSta
                     return u
                 })
             }
-        case 'SET-TOTAL-COUNT':
+        case 'users-reducer/SET-TOTAL-COUNT':
             return {
                 ...state, totalUsersCount: action.count
             }
 
-        case 'UNFOLLOW':
+        case 'users-reducer/UNFOLLOW':
             return {
 
                 ...state, users: state.users.map(u => {
@@ -66,12 +66,12 @@ export const usersReducer = (state = initialState, action: any): UsersInitialSta
                 })
             }
 
-        case 'SET-USERS':
+        case 'users-reducer/SET-USERS':
             return {...state, users: action.users}
 
-        case 'SET-CURRENT-PAGE' :
+        case 'users-reducer/SET-CURRENT-PAGE' :
             return {...state, currentPage: action.currentPage}
-        case 'TOGGLE-IS-FETCHING':
+        case 'users-reducer/TOGGLE-IS-FETCHING':
             return {...state, isFetching: action.isFetching}
 
         default:
@@ -82,19 +82,19 @@ export const usersReducer = (state = initialState, action: any): UsersInitialSta
 export type setIsFetchingType = ReturnType<typeof setIsFetching>
 // setIsFetching ActionCreator
 export const setIsFetching = (isFetching: boolean) => {
-    return {type: 'TOGGLE-IS-FETCHING', isFetching} as const
+    return {type: 'users-reducer/TOGGLE-IS-FETCHING', isFetching} as const
 }
 // type for setCurrentPage
 export type setCurrentPageType = ReturnType<typeof setCurrentPage>
 // setCurrentPage ActionCreator
 export const setCurrentPage = (currentPage: number) => {
-    return {type: 'SET-CURRENT-PAGE', currentPage}
+    return {type: 'users-reducer/SET-CURRENT-PAGE', currentPage}
 }
 // type for follow
 export type followType = ReturnType<typeof follow>
 // follow ActionCreator
 export const follow = (userId: number) => {
-    return {type: 'FOLLOW', userId} as const
+    return {type: 'users-reducer/FOLLOW', userId} as const
 }
 // type for unfollow
 export type unfollowType= ReturnType<typeof unfollow>
@@ -106,13 +106,13 @@ export const unfollow = (userId: number) => {
 export type setUsersType = ReturnType<typeof setUsers>
 // setUsers ActionCreator
 export const setUsers = (users: any) => {
-    return {type: 'SET-USERS', users} as const
+    return {type: 'users-reducer/SET-USERS', users} as const
 }
 // type for  setTotalUsersCount
 export type setTotalUsersCountType = ReturnType<typeof setTotalUsersCount>
 // setTotalUsersCount ActionCreator
 export const setTotalUsersCount = (count: number) => {
-    return {type: 'SET-TOTAL-COUNT', count} as const
+    return {type: 'users-reducer/SET-TOTAL-COUNT', count} as const
 }
 // thanks
 export const requestUsers = (currentPage: number, pageSize: number) => {

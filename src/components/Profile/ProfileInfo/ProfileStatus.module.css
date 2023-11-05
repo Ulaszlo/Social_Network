@@ -9,3 +9,6 @@
     font-size: 18px;
     font-family: Algerian;
 }
+.profileLight:hover{
+color:rgba(42,151,222,0.32);
+}

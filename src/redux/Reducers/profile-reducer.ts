@@ -1,10 +1,11 @@
 import {profileAPI} from "../../api/api";
 import {Dispatch} from "redux";
+import {string} from "yup";
 // Тип инициализационного стейта
 export type ProfileInitialStateType = {
     newPostText: string
     posts: Array<PostType>
-    profile: null | number
+    profile:TypeProfileDataType | null | number
     UserStatus: string
 }
 // Тип объетка в массиве posts
@@ -13,7 +14,7 @@ export type PostType = {
     likeCount: number
 }
 //Обший тип для actions
-export type AllActionsType = AddPostActionCreatorType | setUserProfileType | setStatusACType
+export type AllActionsType = AddPostActionCreatorType | setUserProfileType | setStatusACType | updateUserStatusACType
 //Инициализационный стейт
 let initialState: ProfileInitialStateType = {
     newPostText: '',
@@ -26,13 +27,17 @@ let initialState: ProfileInitialStateType = {
         {message: 'Всем привет! это мой первый пост.)))))', likeCount: 11},
     ],
     profile: null,
-    UserStatus: ' '
+    UserStatus: ''
 }
+// names for types of action
+const ADD_POST = "profile-reducer/ADD-POST"
+const SET_USER_PROFILE= "profile-reducer/SET-USER-PROFILE"
+const SET_STATUS = "profile-reducer/SET-STATUS"
+const UPDATE_USER_STATUS= "profile-reducer/UPDATE-USER-STATUS"
 // profileReducer
 export const profileReducer = (state = initialState, action: AllActionsType): ProfileInitialStateType => {
-    debugger
     switch (action.type) {
-        case "ADD-POST": {
+        case ADD_POST: {
             let newPost = {message: action.currentPostText, likeCount: 0}
             let stateCopy = {
                 ...state,
@@ -49,14 +54,14 @@ export const profileReducer = (state = initialState, action: AllActionsType): Pr
         //         ...state,
         //         newPostText: action.newText
         //     }
-        case "SET-USER-PROFILE": {
+        case SET_USER_PROFILE: {
             return {...state, profile: action.profile}
         }
 
-        case "SET-STATUS" :
+        case SET_STATUS :
             return {...state, UserStatus: action.UserStatus}
-        // case "UPDATE-USER-STATUS":
-        //     return {...state, UserStatus: action.newStatus}
+        case UPDATE_USER_STATUS:
+            return {...state, UserStatus: action.UserStatus}
         default :
             return state
     }
@@ -66,7 +71,7 @@ export type AddPostActionCreatorType = ReturnType<typeof AddPostActionCreator>
 // ActionCreator добавления поста
 export const AddPostActionCreator = (currentPostText: string) => {
     return {
-        type: "ADD-POST",
+        type:ADD_POST,
         currentPostText
 
     } as const
@@ -75,7 +80,7 @@ export const AddPostActionCreator = (currentPostText: string) => {
 export type setUserProfileType = ReturnType<typeof setUserProfile>
 // setUserProfileActionCreator
 export const setUserProfile = (profile: number) => {
-    return {type: "SET-USER-PROFILE", profile} as const
+    return {type:SET_USER_PROFILE, profile} as const
 }
 // Thunks creator for getProfile
 export const getProfile = (userId: number) => {
@@ -90,8 +95,9 @@ export const getProfile = (userId: number) => {
 export type setStatusACType = ReturnType<typeof setStatusAC>
 // setStatusActionCreator
 export const setStatusAC = (UserStatus: string) => {
-    return {type: "SET-STATUS", UserStatus} as const
+    return {type: SET_STATUS, UserStatus} as const
 }
+
 // Thunks creator for getUserStatus
 export const getUserStatus = (userId: number) => {
     return (dispatch: Dispatch) => {
@@ -101,9 +107,9 @@ export const getUserStatus = (userId: number) => {
     }
 }
 
-
-const updateUserStatusAC=(newStatus:string)=>{
-    return{type:"UPDATE-USER-STATUS",UserStatus:newStatus}
+type updateUserStatusACType = ReturnType<typeof updateUserStatusAC>
+export const updateUserStatusAC=(newStatus:string)=>{
+    return{type:UPDATE_USER_STATUS,UserStatus:newStatus} as const
 }
 
 // Thunks creator for updateUserStatus
@@ -114,4 +120,20 @@ export const updateUserStatus = (UserStatus: string) => {
 
         })
     }
+}
+export type TypeProfileDataType = {
+    aboutMe: string
+    contacts:ContactsDataType
+    fullName:string
+    photos:PhotosDataType
+    userId:number
+}
+export type PhotosDataType = {
+    large:string
+
+}
+export type ContactsDataType={
+    github:string
+    instagram:string
+    vk:string
 }

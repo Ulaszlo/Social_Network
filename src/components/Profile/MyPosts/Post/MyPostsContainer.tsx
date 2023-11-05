@@ -4,10 +4,15 @@ import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
 import {AppStateType} from "../../../../redux/redux-store";
 
-export type MyPostType= mapStatePropsType & mapDispatchPropsType
+export type MyPostType= mapStatePropsType & mapDispatchPropsType & PropsType
+type PropsType= {
+    className:string
+    profile:number | null
+}
 type mapStatePropsType ={
     posts: PostType
     newPostText:string
+
 }
 type mapDispatchPropsType={
     updateNewPostText:(text: string)=>void

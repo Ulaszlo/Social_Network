@@ -8,8 +8,7 @@ import {PostType} from "../../../../redux/Reducers/profile-reducer";
 
 
 
-export const MyPosts = (props: MyPostType & PostType ) => {
-debugger
+export const MyPosts = React.memo((props: MyPostType & PostType ) => {
     const myPostFormik = useFormik({
         initialValues: {
             newPost: '',
@@ -23,6 +22,7 @@ debugger
     });
     // @ts-ignore
     let postsElement= props.posts.map(((p: { message: string; likeCount: number; }) => <Post userPhoto={props.profile.photos.small} message={p.message} likeCount={p.likeCount}/>))
+    console.log("Rennder myPost")
     return (
         <div className={s.postBlock}>
 
@@ -47,7 +47,7 @@ debugger
 
         </div>
 
-    );}
+    );})
 
 
 // let newPostElement = React.createRef();

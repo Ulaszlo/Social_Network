@@ -15,11 +15,14 @@ import {connect} from "react-redux";
 import {AuthInitialStateType, login} from "../../redux/Reducers/auth-reducer";
 import {Redirect} from "react-router-dom";
 
-
+type LoginPropsType = {
+    login:(email:string | null,password :string | null,rememberMe: string | null)=>void | null
+    isAuth:boolean
+}
 
 const defaultTheme = createTheme();
 
- const Login=(props:AuthInitialStateType)=> {
+ const Login=(props:AuthInitialStateType | LoginPropsType)=> {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -27,6 +30,7 @@ const defaultTheme = createTheme();
         let email = data.get('email')
         let password = data.get('password')
         let rememberMe = data.get('rememberMe')
+        // @ts-ignore
         props.login(email,password,rememberMe)
 
     }
@@ -106,4 +110,5 @@ const defaultTheme = createTheme();
 const mapStateToProps=(state:AuthInitialStateType)=>({
     isAuth: state.auth.isAuth
 })
+// @ts-ignore
 export default connect(mapStateToProps,{login})(Login)

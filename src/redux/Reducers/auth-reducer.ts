@@ -4,6 +4,7 @@ import {ThunkAction} from "redux-thunk";
 import { AppStateType } from "../redux-store";
 
 export type AuthInitialStateType = {
+    auth: any;
     userId: null | number
     email:   null | string
     login: null | string
@@ -15,7 +16,7 @@ export type authDataType = {
     email: null | string
     login: null | string
 }
-let initialState: AuthInitialStateType = {
+let initialState: { isAuth: boolean; login: null; userId: null; email: null } = {
     userId: null,
     email: null,
     login: null,
@@ -25,10 +26,10 @@ let initialState: AuthInitialStateType = {
 // типизация санок
 type thunkType = ThunkAction<any, AppStateType, unknown, authActionsType>
 type authActionsType = setUserDataType
-
+const SetUserData="auth-reducer/SET-USER-DATA"
 export const authReducer: any = (state = initialState, action: any) => {
     switch (action.type) {
-        case "SET-USER-DATA":
+        case SetUserData:
             return {...state, ...action.data,}
         default:
             return {...state}
@@ -38,7 +39,7 @@ export const authReducer: any = (state = initialState, action: any) => {
 type setUserDataType = ReturnType<typeof setAuthUserData>
 export const setAuthUserData = (userId: number | null, login: string | null, email: string | null, isAuth: boolean) => {
     return {
-        type: "SET-USER-DATA",
+        type:SetUserData,
         data: {userId, email, login, isAuth},
     } as const
 }

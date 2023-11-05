@@ -5,7 +5,7 @@ import {NavLink} from "react-router-dom";
 import {usersAPI} from "../../api/api";
 
 export const Users = (props: any) => {
-    debugger;
+
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
     let pages = [];
     for (let i = 1; i <= pagesCount; i++) {
@@ -27,20 +27,24 @@ export const Users = (props: any) => {
                     <div key={u.id}>
                         <div>
                             {u.followed ? <button onClick={() => {
-                                usersAPI.unFollow(u.id).then((response: { data: { resultCode: number; }; }) => {
-                                    if (response.data.resultCode === 0) {
-                                        props.unfollow(u.id)
-                                    }
-                                })
+                                if (typeof u.id === "number") {
+                                    usersAPI.unFollow(u.id).then((response: { data: { resultCode: number; }; }) => {
+                                        if (response.data.resultCode === 0) {
+                                            props.unfollow(u.id)
+                                        }
+                                    })
+                                }
 
                             }}>UnFollow</button> : <button onClick={() => {
 
 
-                                usersAPI.follow(u.id).then(response => {
-                                    if (response.data.resultCode === 0) {
-                                        props.follow(u.id)
-                                    }
-                                })
+                                if (typeof u.id === "number") {
+                                    usersAPI.follow(u.id).then(response => {
+                                        if (response.data.resultCode === 0) {
+                                            props.follow(u.id)
+                                        }
+                                    })
+                                }
                             }}>Follow</button>}
 
                             <NavLink to={'/profile/' + u.id}>

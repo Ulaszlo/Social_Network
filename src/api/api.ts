@@ -8,7 +8,6 @@ const instance = axios.create({
 })
 export const usersAPI = {
     getUsers(currentPage: any, pageSize: any) {
-        debugger
         return instance.get(`/users?page=${currentPage}&count=${pageSize}`).then(response => {
             return response.data
         })
@@ -45,6 +44,6 @@ export const profileAPI = {
         return instance.get(`profile/status/` + userId)
     },
     updateStatus(UserStatus: string) {
-        return instance.put(`profile/status/`, {UserStatus: UserStatus})
+        return instance.put(`profile/status`, {UserStatus})
     }
 }

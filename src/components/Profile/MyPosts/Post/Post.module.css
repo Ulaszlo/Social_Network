@@ -11,8 +11,9 @@
 .likeBlock{
     padding-left: 15px;
 }
+
 .like{
     width: 20px;
     padding-left: 46%;
-
+    color: red;
 }

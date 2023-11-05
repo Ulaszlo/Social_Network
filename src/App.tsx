@@ -25,13 +25,16 @@ class App extends React.Component<mapStatePropsType & mapDispatchPropsType> {
                 }
         return (
             <div>
-                <HeaderComponent/>
+                <HeaderComponent isFetching={null} authStatus={function(): void {
+                    throw new Error('Function not implemented.');
+                } }/>
                 <div className='app-wrapper'>
                     <Nav/>
                     <div className='app-wraper-content'>
 
                         <>
                             <Route exact path={"/dialogs"} component={DialogsContainer}/>
+                            {/*// @ts-ignore*/}
                             <Route exact path="/profile/:userId?" component={ProfileContainer}/>
                             <Route exact path="/login" component={Login}/>
                             <Route exact path="/users" component={UsersContainer}/>
