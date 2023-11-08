@@ -2,3 +2,7 @@
     width: 100px;
 border-radius: 100px;
 }
+.usersPageNumber{
+    color: red;
+    background-color: purple;
+}

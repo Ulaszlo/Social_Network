@@ -1,5 +1,4 @@
 import {AddPostActionCreator, profileReducer} from "./profile-reducer";
-import axios from "axios";
 
 it('length of posts should be incremented ', () => {
 //1. test data

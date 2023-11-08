@@ -1,6 +1,5 @@
 import {profileAPI} from "../../api/api";
 import {Dispatch} from "redux";
-import {string} from "yup";
 // Тип инициализационного стейта
 export type ProfileInitialStateType = {
     newPostText: string
