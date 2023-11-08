@@ -30,7 +30,7 @@ export type UserType = {
 let initialState: UsersInitialStateType = {
     users: [],
     pageSize: 5,
-    totalUsersCount: 21,
+    totalUsersCount: 1000,
     currentPage: 1,
     isFetching: true,
 }
@@ -88,7 +88,7 @@ export const setIsFetching = (isFetching: boolean) => {
 export type setCurrentPageType = ReturnType<typeof setCurrentPage>
 // setCurrentPage ActionCreator
 export const setCurrentPage = (currentPage: number) => {
-    return {type: 'users-reducer/SET-CURRENT-PAGE', currentPage}
+    return {type: 'users-reducer/SET-CURRENT-PAGE', currentPage} as const
 }
 // type for follow
 export type followType = ReturnType<typeof follow>
@@ -116,15 +116,12 @@ export const setTotalUsersCount = (count: number) => {
 }
 // thanks
 export const requestUsers = (currentPage: number, pageSize: number) => {
-
-    return (dispatch: Dispatch) => {
+    return async (dispatch: Dispatch) => {
         dispatch(setIsFetching(true))
         // dispatch(setCurrentPage(currentPage))
-
-        usersAPI.getUsers(currentPage, pageSize).then((data) => {
+        let data = await usersAPI.getUsers(currentPage, pageSize)
             dispatch(setUsers(data.items))
             dispatch(setIsFetching(false))
             // dispatch((setTotalUsersCount(data.totalUserCount)))
-        })
     }
 }

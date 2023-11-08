@@ -21,9 +21,10 @@ this.props.getUsers(this.props.currentPage,this.props.pageSize)
 
     }
 
-    onPageChanged = (pageNumber: any) => {
+    onPageChanged = (currentPage: number) => {
 
-        this.props.getUsers(pageNumber)
+        this.props.getUsers(currentPage)
+        this.props.setCurrentPage(currentPage)
 
     }
 
