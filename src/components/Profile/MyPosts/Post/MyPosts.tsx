@@ -22,7 +22,6 @@ export const MyPosts = React.memo((props: MyPostType & PostType ) => {
     });
     // @ts-ignore
     let postsElement= props.posts.map(((p: { message: string; likeCount: number; }) => <Post userPhoto={props.profile.photos.small} message={p.message} likeCount={p.likeCount}/>))
-    console.log("Rennder myPost")
     return (
         <div className={s.postBlock}>
 

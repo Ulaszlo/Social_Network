@@ -108,6 +108,7 @@ const defaultTheme = createTheme();
     );
 }
 const mapStateToProps=(state:AuthInitialStateType)=>({
+
     isAuth: state.auth.isAuth
 })
 // @ts-ignore

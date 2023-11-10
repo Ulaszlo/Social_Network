@@ -54,7 +54,7 @@ type mapDispatchPropsType = {
 const mapStateToProps = (state:AppStateType) => {
 
     return {
-        initialized: state.app.initialized
+        initialized: state.app.initialized,
     }
 }
 export default compose (connect(mapStateToProps, {initializedApp})(App));

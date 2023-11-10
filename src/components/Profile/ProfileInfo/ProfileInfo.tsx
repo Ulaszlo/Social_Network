@@ -2,7 +2,7 @@ import s from './ProfileInfo.module.css'
 import gitIcon from '../../../assets/imges/github-logo.png'
 import {ProfileStatusFC} from "./ProfileStatusFC";
 import {TypeProfileDataType} from "../../../redux/Reducers/profile-reducer";
-
+import userAvatar from "../../../assets/imges/user-images.png"
 type ProfileInfoType = {
     profile:TypeProfileDataType
     UserStatus: string
@@ -14,7 +14,7 @@ type ProfileInfoType = {
 export const ProfileInfo = (props: ProfileInfoType) => {
     return (
         <div className={s.profileInfoContent}>
-            <img className={s.profileUserPhoto} src={props.profile.photos.large}/>
+            <img className={s.profileUserPhoto} src={props.profile.photos.large || userAvatar }/>
             <div className={s.userName}>{props.profile.fullName}</div>
             <div className={s.contacts}>
                 <div className={s.contactsTitle}> Контакты</div>

@@ -4,11 +4,12 @@ import {ThunkAction} from "redux-thunk";
 import {AppStateType} from "../redux-store";
 
 export type AuthInitialStateType = {
-    auth: any;
+    auth?: any;
     userId: null | number
     email: null | string
     login: null | string
     isAuth: boolean
+    authorizedUserId?: number | null
 }
 
 export type authDataType = {
@@ -16,11 +17,13 @@ export type authDataType = {
     email: null | string
     login: null | string
 }
-let initialState: { isAuth: boolean; login: null; userId: null; email: null } = {
+let initialState: AuthInitialStateType = {
+
     userId: null,
     email: null,
     login: null,
     isAuth: false,
+    authorizedUserId:null,
 
 }
 // типизация санок
@@ -29,7 +32,7 @@ type authActionsType = setUserDataType
 // action
 const SetUserData = "auth-reducer/SET-USER-DATA"
 // reducer
-export const authReducer: any = (state = initialState, action: any) => {
+export const authReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case SetUserData:
             return {...state, ...action.data,}

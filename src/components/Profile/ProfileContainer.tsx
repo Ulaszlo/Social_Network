@@ -16,6 +16,7 @@ import {AppStateType} from "../../redux/redux-store";
 type MapStateProps = {
     profile: TypeProfileDataType
     UserStatus: string
+    authorizedUserId: number | null
 }
 type MapDispatchProps = {
     setUserProfile: () => void
@@ -25,29 +26,36 @@ type MapDispatchProps = {
 }
 export type ProfileContainerType = MapStateProps & MapDispatchProps
 
+
 class ProfileContainer extends React.PureComponent<ProfileContainerType> {
-    componentDidMount() {
+     refreshProfile= () => {
         // @ts-ignore
         let userId = this.props.match.params.userId
         if (!userId) {
-             // userId = 30025
-            userId = 2
+            // userId = 30025
+            // userId = 2
+            userId = this.props.authorizedUserId;
         }
-        // @ts-ignore
-        // let NewStatus:string = this.props.NewStatus
         this.props.getProfile(userId)
         this.props.getUserStatus(userId)
-        // this.props.updateUserStatus(NewStatus)
+         alert(this.props.authorizedUserId)
+    }
+    componentDidMount() {
+        this.refreshProfile()
+    }
+
+    componentDidUpdate(prevProps: Readonly<ProfileContainerType>, prevState: Readonly<{}>, snapshot?: any) {
+        // @ts-ignore
+        if ( this.props.match.params.userId !=prevProps.match.params.userId) {
+            this.refreshProfile()
+
+        }
     }
 
     render() {
 
-        return(<>
-            <Profile  {...this.props} profile={this.props.profile}
-                // UserStatus={this.props.UserStatus}
-                // updateUserStatus={this.props.updateUserStatus}
-            />
-
+        return (<>
+            <Profile  {...this.props} profile={this.props.profile}/>
         </>)
 
     }
@@ -57,7 +65,7 @@ let mapStateToProps = (state: AppStateType) => ({
 
     profile: state.profilePage.profile,
     UserStatus: state.profilePage.UserStatus,
-
+    authorizedUserId:state.auth.userId,
 
 })
 export default compose(connect(mapStateToProps, {

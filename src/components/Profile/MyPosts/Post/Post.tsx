@@ -1,7 +1,8 @@
-import React, {FormEvent, useState} from 'react';
+import React, { useState} from 'react';
 import s from './Post.module.css'
 import likeIcon from '../../../../assets/imges/likeIcon.png'
 import redLikeIcon from '../../../../assets/imges/redLikeIcon.png'
+import userAvatar from "../../../../assets/imges/user-images.png"
 type PostType={
     userPhoto:string
     message:string
@@ -19,7 +20,7 @@ export const Post = (props: PostType) => {
     }
     return (
         <div className={s.item}>
-            <img className={s.itemImg} src={props.userPhoto}/>
+            <img className={s.itemImg} src={props.userPhoto || userAvatar}/>
             <div> {props.message}</div>
 
             <div>
