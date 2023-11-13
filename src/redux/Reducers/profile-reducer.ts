@@ -13,7 +13,7 @@ export type PostType = {
     likeCount: number
 }
 //Обший тип для actions
-export type AllActionsType = AddPostActionCreatorType | setUserProfileType | setStatusACType | updateUserStatusACType
+export type AllActionsType = AddPostActionCreatorType | setUserProfileType | setStatusACType | updateUserStatusACType | setUserPhotoType
 //Инициализационный стейт
 let initialState: ProfileInitialStateType = {
     newPostText: '',
@@ -33,9 +33,11 @@ const ADD_POST = "profile-reducer/ADD-POST"
 const SET_USER_PROFILE= "profile-reducer/SET-USER-PROFILE"
 const SET_STATUS = "profile-reducer/SET-STATUS"
 const UPDATE_USER_STATUS= "profile-reducer/UPDATE-USER-STATUS"
+const SAVE_USER_PHOTO= "profile-reducer/SAVE-USER-PHOTO"
 // profileReducer
 export const profileReducer = (state = initialState, action: AllActionsType): ProfileInitialStateType => {
     switch (action.type) {
+
         case ADD_POST: {
             let newPost = {message: action.currentPostText, likeCount: 0}
             let stateCopy = {
@@ -46,6 +48,9 @@ export const profileReducer = (state = initialState, action: AllActionsType): Pr
 
             return stateCopy;
         }
+        case SAVE_USER_PHOTO:
+            // @ts-ignore
+            return {...state, profile: {...state.profile, photos: action.photos }}
 
         // case
         // "UPDATE-NEW-POST-TEXT":
@@ -61,6 +66,7 @@ export const profileReducer = (state = initialState, action: AllActionsType): Pr
             return {...state, UserStatus: action.UserStatus}
         case UPDATE_USER_STATUS:
             return {...state, UserStatus: action.UserStatus}
+
         default :
             return state
     }
@@ -110,8 +116,26 @@ type updateUserStatusACType = ReturnType<typeof updateUserStatusAC>
 export const updateUserStatusAC=(newStatus:string)=>{
     return{type:UPDATE_USER_STATUS,UserStatus:newStatus} as const
 }
-
+type setUserPhotoType = ReturnType<typeof setUserPhoto>
+export const setUserPhoto = (photos:any)=>{
+    return {type:SAVE_USER_PHOTO,photos} as const
+}
 // Thunks creator for updateUserStatus
+// export const savePhoto = (userPhoto: string) => {
+//     return (dispatch: Dispatch) => {
+//         profileAPI.savePhoto(userPhoto).then(response => {
+//             dispatch(setUserPhoto(response.data.data.photos))
+//
+//         })
+//     }
+// }
+export const savePhoto = (file:any) => async (dispatch:Dispatch) => {
+    let response = await profileAPI.savePhoto(file);
+
+    if (response.data.resultCode === 0) {
+        dispatch(setUserPhoto(response.data.data.photos));
+    }
+}
 export const updateUserStatus = (UserStatus: string) => {
     return (dispatch: Dispatch) => {
         profileAPI.updateStatus(UserStatus).then(response => {
@@ -129,6 +153,7 @@ export type TypeProfileDataType = {
 }
 export type PhotosDataType = {
     large:string
+    small:string
 
 }
 export type ContactsDataType={

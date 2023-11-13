@@ -2,6 +2,7 @@ import React from "react";
 import {
     getProfile,
     getUserStatus,
+    savePhoto,
     setUserProfile,
     TypeProfileDataType,
     updateUserStatus
@@ -38,7 +39,6 @@ class ProfileContainer extends React.PureComponent<ProfileContainerType> {
         }
         this.props.getProfile(userId)
         this.props.getUserStatus(userId)
-         alert(this.props.authorizedUserId)
     }
     componentDidMount() {
         this.refreshProfile()
@@ -55,7 +55,9 @@ class ProfileContainer extends React.PureComponent<ProfileContainerType> {
     render() {
 
         return (<>
-            <Profile  {...this.props} profile={this.props.profile}/>
+            {/*// @ts-ignore*/}
+            <Profile   savePhoto={this.props.savePhoto}  isOwner={!this.props.match.params.userId}
+                       {...this.props}  profile={this.props.profile}/>
         </>)
 
     }
@@ -72,7 +74,8 @@ export default compose(connect(mapStateToProps, {
     setUserProfile,
     getProfile,
     getUserStatus,
-    updateUserStatus
+    updateUserStatus,
+    savePhoto,
 }), withRouter, whitAuthRedirect)(ProfileContainer)
 
 
